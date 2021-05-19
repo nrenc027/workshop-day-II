@@ -40,3 +40,9 @@ test('each delete button has a unique accessible name', () => {
     names.push(name);
   });
 });
+
+test("the cook modal's yumminess input is programmatically required", () => {
+  const modal = mount(<RecipeModal {...defaultProps} edit={false} />);
+  const field = modal.find('TextField');
+  expect(field.prop('required')).toBe(true);
+});

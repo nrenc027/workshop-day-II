@@ -27,7 +27,6 @@ const statsStub = [
 
 test('renders the stat icon images', () => {
   const stats = shallow(<Stats stats={statsStub} />);
-
   expect(stats.find('.Stat__value img').length).toBe(3);
 });
 
@@ -37,4 +36,18 @@ test('wraps each stat in a live region', () => {
   expect(stats.find('[aria-live][aria-relevant][aria-atomic]').length).toBe(
     statsStub.length
   );
+});
+
+test('images are decorative', () => {
+  const stats = shallow(<Stats stats={statsStub} />);
+  const statsLength = stats.find('Stat__value-icon');
+  for (let i = 0; i < statsLength; i++) {
+    expect(
+      stats
+        .find('Stat__value-icon')
+        .at(i + 1)
+        .getDOMNode()
+        .getAttribute('alt')
+    ).toBe('');
+  }
 });

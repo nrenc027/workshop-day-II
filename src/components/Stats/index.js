@@ -10,16 +10,16 @@ const Stats = ({ stats }) => (
         <div
           className={`Stat ${histogram ? 'with-chart' : ''}`}
           key={`${label}-${value}`}
+          // waits till SR has a moment to announce
+          aria-live="polite"
+          // changes to text announce
+          aria-relevant="text"
+          // true: whole text element announced, false: just what is changed is announced
+          aria-atomic="true"
         >
           <h2>
             <div className="Stat__value">
-              {icon && (
-                <img
-                  className="Stat__value-icon"
-                  src={icon}
-                  alt="decorative icon"
-                />
-              )}
+              {icon && <img className="Stat__value-icon" src={icon} alt="" />}
               {histogram ? (
                 <Histogram data={histogram} />
               ) : (
